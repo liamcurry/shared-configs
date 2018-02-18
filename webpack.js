@@ -1,36 +1,29 @@
-import * as CopyWebpackPlugin from "copy-webpack-plugin";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
-import * as path from "path";
-import * as webpack from "webpack";
-import * as merge from "webpack-merge";
-
-export function buildConfig(entryPath: string, outputPath: string): webpack.Configuration {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var webpack = require("webpack");
+var merge = require("webpack-merge");
+function buildConfig(entryPath, outputPath) {
     if (isDev()) {
         console.warn("Starting Webpack with development config");
         return devConfig(entryPath, outputPath);
-    } else {
+    }
+    else {
         console.log("Starting Webpack with production config");
         return prodConfig(entryPath, outputPath);
     }
 }
-
-const prod = "production";
-const dev = "development";
-function getEnv(): "production" | "development" {
+exports.buildConfig = buildConfig;
+var prod = "production";
+var dev = "development";
+function getEnv() {
     return process.env.npm_lifecycle_event === "build" ? prod : dev;
 }
-const isDev = () => getEnv() === dev;
-const isProd = () => getEnv() === prod;
-
-// entry and output path/filename variables
-// const entryPath = path.join(process.cwd(), "src/ts/index.ts");
-// const outputPath = path.join(process.cwd(), "dist");
-// const entryPath = "src/ts/index.ts";
-// const outputPath = "dist";
-
-// common webpack config (valid for dev and prod)
-function commonConfig(outputPath: string): webpack.Configuration {
-    const outputFilename = isProd() ? "[name]-[hash].js" : "[name].js";
+var isDev = function () { return getEnv() === dev; };
+var isProd = function () { return getEnv() === prod; };
+function commonConfig(outputPath) {
+    var outputFilename = isProd() ? "[name]-[hash].js" : "[name].js";
     return {
         output: {
             path: outputPath,
@@ -61,7 +54,6 @@ function commonConfig(outputPath: string): webpack.Configuration {
                 {
                     test: /\.css$/,
                     use: ["style-loader", "css-loader"],
-                    // exclude: /(node_modules|bower_components)/
                 },
             ],
         },
@@ -78,12 +70,10 @@ function commonConfig(outputPath: string): webpack.Configuration {
         ],
     };
 }
-
-function devConfig(entryPath: string, outputPath: string): webpack.Configuration {
+function devConfig(entryPath, outputPath) {
     return merge(commonConfig(outputPath), {
         entry: ["webpack-dev-server/client?http://0.0.0.0:8080", entryPath],
         devServer: {
-            // serve index.html in place of 404 responses
             historyApiFallback: true,
             contentBase: "./src",
             hot: true,
@@ -113,8 +103,7 @@ function devConfig(entryPath: string, outputPath: string): webpack.Configuration
         },
     });
 }
-
-function prodConfig(entryPath: string, outputPath: string): webpack.Configuration {
+function prodConfig(entryPath, outputPath) {
     return merge(commonConfig(outputPath), {
         entry: entryPath,
         module: {

@@ -1,13 +1,12 @@
-{
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
-    ],
-    "jsRules": {},
-    "rules": {
-        "no-var-requires": false,
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var config = {
+    extends: ["tslint:recommended"],
+    defaultSeverity: "error",
+    rules: {
+        "no-var-requires": true,
         "object-literal-sort-keys": false,
-        "no-console": false,
+        "no-console": true,
         "no-unused-variable": true,
         "strict-boolean-expressions": true,
         "strict-type-predicates": true,
@@ -24,18 +23,22 @@
             {
                 "call-signature": "nospace",
                 "index-signature": "nospace",
-                "parameter": "nospace",
+                parameter: "nospace",
                 "property-declaration": "nospace",
-                "variable-declaration": "nospace"
+                "variable-declaration": "nospace",
             },
             {
                 "call-signature": "onespace",
                 "index-signature": "onespace",
-                "parameter": "onespace",
+                parameter: "onespace",
                 "property-declaration": "onespace",
-                "variable-declaration": "onespace"
-            }
-        ]
+                "variable-declaration": "onespace",
+            },
+        ],
+        "no-return-await": true,
+        "interface-name": [true, "never-prefix"],
     },
-    "rulesDirectory": []
-}
+    jsRules: {},
+    rulesDirectory: [],
+};
+module.exports = config;
