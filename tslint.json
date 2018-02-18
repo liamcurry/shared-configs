@@ -1,0 +1,41 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "no-var-requires": false,
+        "object-literal-sort-keys": false,
+        "no-console": false,
+        "no-unused-variable": true,
+        "strict-boolean-expressions": true,
+        "strict-type-predicates": true,
+        "member-access": true,
+        "no-any": true,
+        "no-magic-numbers": true,
+        "no-non-null-assertion": true,
+        "no-parameter-reassignment": true,
+        "no-unnecessary-type-assertion": true,
+        "prefer-for-of": true,
+        "arrow-parens": false,
+        "typedef-whitespace": [
+            true,
+            {
+                "call-signature": "nospace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
+            },
+            {
+                "call-signature": "onespace",
+                "index-signature": "onespace",
+                "parameter": "onespace",
+                "property-declaration": "onespace",
+                "variable-declaration": "onespace"
+            }
+        ]
+    },
+    "rulesDirectory": []
+}
